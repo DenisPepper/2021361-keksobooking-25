@@ -49,3 +49,23 @@ function getRandomFloatInclusive(min, max, digits) {
 }
 
 getRandomFloatInclusive(0, 1, 1);
+
+//
+//предлагаю подумать над функцией - для целых чисел: случайное число больше или равно нижней границе но строго меньше верхней
+
+function randomInt (min, max){
+  //min должно быть целым числом прямо на входе
+  if( !Number.isInteger(min)){
+    throw new Error('min должен быть целым числом');
+  }
+  if(!Number.isInteger(max)){
+    throw new Error('max должен быть целым числом');
+  }
+  if( min <0){
+    throw new Error('min должен быть 0 или больше');
+  }
+  if( max <=min){
+    throw new Error('неверный интервал');
+  }
+  return Math.floor((max-min)*Math.random() + min);
+}
