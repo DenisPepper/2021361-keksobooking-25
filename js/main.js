@@ -5,6 +5,8 @@
  * {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random}
  */
 function getRandomIntInclusive(min, max) {
+  // очень-очень плохая практика изменять значение
+  // полученного аргумента
   min = Math.ceil(min);
   max = Math.floor(max);
   if (min < 0 || max < 0 || min >= max) {
