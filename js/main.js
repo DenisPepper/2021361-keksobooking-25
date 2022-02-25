@@ -35,13 +35,16 @@ getRandomIntInclusive(0, 1);
 function getRandomFloatInclusive(min, max, digits) {
   // Ты не поверишь, то это же бесполезная операция
   // например, число 0.1 без округления невозможно представить в IEEE 754
-  // поэтому все биты все равно будут заняты
+  // поэтому все биты все равно будут заняты делом
+  // https://www.exploringbinary.com/why-0-point-1-does-not-exist-in-floating-point/#:~:text=Depending%20on%20how%20many%20bits,which%20is%200.0999755859375%20in%20decimal.
   min = Number(min.toFixed(digits));
   max = Number(max.toFixed(digits));
   if (min < 0 || max < 0 || min >= max) {
     return -1;
   }
   const result = Math.random() * (max - min + 1 / 10 ** (digits + 1)) + min;
+  // ты не поверишь, но после этой операции,
+  // результат __может__ оказаться вне диапазона.
   return Number(result.toFixed(digits));
 }
 
