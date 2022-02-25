@@ -75,3 +75,26 @@ function randomInt (min, max){
 function getRandomIntInclusive2 (min, max){
   return randomInt(min, max+1);
 }
+
+// обрати внимание что if проверяет то что нам нужно, а не обратную сторону, потому
+// как среди числе могут быть Number.Infinity Number.NaN и прочие числа-не-числа
+// они дает сравнение false со всем подряд
+function getRandomFloatInclusive2(min, max, precision){
+  if(min >= 0){
+    if(max <= min){
+      if(precision>=0){
+        const randomResult = (max-min)*Math.random()+min;
+        if(randomResult<min){
+          return min;
+        }
+        if(randomResult>max){
+          return max;
+        }
+        return randomResult;
+      }
+      throw new Error('точность должна быть больше нуля')
+    }
+    throw new Error('max должен быть больше min')
+  }
+  throw new Error('min должен быть больше нуля')
+}
