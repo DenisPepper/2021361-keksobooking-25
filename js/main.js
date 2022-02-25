@@ -76,6 +76,11 @@ function getRandomIntInclusive2 (min, max){
   return randomInt(min, max+1);
 }
 
+function roundTo(value, precision){
+  const scalar = 10**precision;
+  return Math.round(value*scalar)/scalar;
+}
+
 // обрати внимание что if проверяет то что нам нужно, а не обратную сторону, потому
 // как среди числе могут быть Number.Infinity Number.NaN и прочие числа-не-числа
 // они дает сравнение false со всем подряд
@@ -83,7 +88,7 @@ function getRandomFloatInclusive2(min, max, precision){
   if(min >= 0){
     if(max <= min){
       if(precision>=0){
-        const randomResult = (max-min)*Math.random()+min;
+        const randomResult = roundTo(Math.r((max-min)*Math.random()+min), precision);
         if(randomResult<min){
           return min;
         }
