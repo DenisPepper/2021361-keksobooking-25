@@ -69,3 +69,9 @@ function randomInt (min, max){
   }
   return Math.floor((max-min)*Math.random() + min);
 }
+
+// вариант с включенной верхней границей для целых чисел
+// выводится из "без включения"
+function getRandomIntInclusive2 (min, max){
+  return randomInt(min, max+1);
+}
