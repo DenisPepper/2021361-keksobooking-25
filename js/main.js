@@ -10,14 +10,14 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   if (min < 0 || max < 0 || min >= max) {
-    // Это поведение принято в Си, там плохо с исключениями (раньше было)
+    // Это поведение принято в Си, в системных функция ОС. Но
     // в последнее время в этом месте сообщество склоняется к мысли
     // что надо throw new Error('неверный аргумент')
     return -1;
   }
   // использование искаженных min и max __может__ (но не обязательно)
   // иметь неверное трактование:
-  //  если аргументы 0.8, 1.2 то между ними в общем-то
+  //  если аргументы 0.8, 1.2, то между ними, в общем-то,
   //  существует "случайное число 1",
   //  а твоя функция откажется работать.
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -33,6 +33,9 @@ getRandomIntInclusive(0, 1);
  * {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random}
  */
 function getRandomFloatInclusive(min, max, digits) {
+  // Ты не поверишь, то это же бесполезная операция
+  // например, число 0.1 без округления невозможно представить в IEEE 754
+  // поэтому все биты все равно будут заняты
   min = Number(min.toFixed(digits));
   max = Number(max.toFixed(digits));
   if (min < 0 || max < 0 || min >= max) {
